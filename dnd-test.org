@@ -1,0 +1,7 @@
+* kind test
+
+| turn | name   | kind   | ord |
+|------+--------+--------+-----|
+|      | greg   | kobold |     |
+|      | bill   | goblin |     |
+| >>>> | player |        |     |

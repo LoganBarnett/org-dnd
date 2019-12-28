@@ -1,0 +1,17 @@
+#+title:     dnd-README
+#+author:    Logan Barnett
+#+email:     logustus@gmail.com
+#+date:      <2019-12-27 Fri>
+#+language:  en
+#+file_tags:
+#+tags:
+
+Run your D&D session using =org-mode=!
+
+Very alpha. Here be dragons.
+
+* building
+
+  #+begin_src shell
+  make
+  #+end_src

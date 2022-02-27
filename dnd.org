@@ -71,8 +71,8 @@
 ** template
    #+begin_src emacs-lisp :results none :tangle yes
      (defvar dnd/combat-table-template
-       "| turn | name | ord | ac | chp | thp | spec | dist |
-     |------+------+-----+----+-----+-----+------+------|"
+       "| turn | name | kind | ord | ac | chp | thp | spec | dist |
+     |------+------+------+-----+----+-----+-----+------+------|"
        "Template to use when creating combat table."
        )
    #+end_src
@@ -239,14 +239,14 @@
      (defvar dnd/profile-path (expand-file-name "~/Dropbox/notes/dnd5e.org"))
    #+end_src
 
-** get kind
+** columns
    There needs to be a =kind= column in the combat table. This is the name we
    will key off of.
 
    #+begin_src emacs-lisp :results none :tangle yes
+    (defvar dnd/name-column 2)
     (defvar dnd/kind-column 3)
    #+end_src
-
 
 ** open profile
 
@@ -283,7 +283,18 @@
    #+end_src
 * keybinding
   #+begin_src emacs-lisp :results none :tangle yes
-    (spacemacs/declare-prefix-for-mode 'org-mode "mD" "dnd" "dnd")
-    (spacemacs/set-leader-keys-for-major-mode 'org-mode (kbd "D n") 'dnd/next-round)
-    (spacemacs/set-leader-keys-for-major-mode 'org-mode (kbd "D c") 'dnd/create-combat-table)
+
+    ;; Let's not inflict Spacemacs upon others. But we can be kind to those that have it.
+    (defmacro dnd/on-spacemacs (&rest body)
+      "Execute BODY if this Emacs is running Spacemacs."
+      (if (boundp 'spacemacs-version)
+        `(progn ,@body)
+        nil
+        )
+      )
+    (dnd/on-spacemacs
+      (spacemacs/declare-prefix-for-mode 'org-mode "mD" "dnd" "dnd")
+      (spacemacs/set-leader-keys-for-major-mode 'org-mode (kbd "D n") 'dnd/next-round)
+      (spacemacs/set-leader-keys-for-major-mode 'org-mode (kbd "D c") 'dnd/create-combat-table)
+      )
   #+end_src

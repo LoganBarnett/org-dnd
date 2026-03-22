@@ -244,6 +244,52 @@ With a prefix argument ARG, jump backward ARG many tables."
   )
 #+end_src
 
+** encounter building
+
+Newer editions of D&D have an encounter building system in place.  This can help
+tune combat to be a certain difficulty, and rewards are assigned based on that.
+
+The steps are roughly as follows:
+1. Given the number of player characters and their levels, decide how difficult
+   the combat should be and then look up the XP budget based on the party's
+   composition and difficulty desired.
+2. Using the XP budget, select stat blocks until the XP budget is met.
+3. Optionally, build a treasure table.  This can be good to do in advance since
+   the treasure contents could come up.
+
+*** party composition to compute XP budget
+
+To determine the party composition, define the players for this encounter.  We
+want to build a table that looks like this:
+
+| name                     | level |
+|--------------------------+-------|
+| bilthar                  |     3 |
+| lady stabbity            |     4 |
+| captian mc captain pants |     3 |
+| blithar                  |     3 |
+
+From here we can compute the combined level and the number of player characters.
+The DMG states to just multiply the XP by the party's count, but we can go
+further by looking up the XP budget per level of every party member.
+
+Using the table from the DMG (pg 115), such a party would be 700 for low, 1050
+for moderate, and 1700 for high.
+
+*** XP budget management
+
+Once we have the XP budget, we select creatures from our stat block section and
+place them in a separate table.
+
+| name | type | qty | xp | cr |
+|------+------+-----+----+----|
+|      |      |     |    |    |
+
+We should be able to easily compute the budget against how much is spent here.
+
+*** bonus: treasure
+
+
 * tracking the current round
   I frequently lose track of which round it is as I apply effects between
   creatures that exist in the initiative order. Having a stark visual counter
